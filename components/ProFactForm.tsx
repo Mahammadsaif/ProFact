@@ -135,16 +135,7 @@ export default function ProFactForm() {
       {/* Success State */}
       {response && (
         <div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg shadow-md">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-lg font-semibold text-gray-800">Response</h3>
-            <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-800 rounded-full">
-              {response.provider}
-            </span>
-          </div>
-          <div className="mb-3">
-            <span className="text-sm font-medium text-gray-600">Topic: </span>
-            <span className="text-sm text-gray-800">{response.topic}</span>
-          </div>
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Response</h3>
           <div className="prose prose-sm max-w-none">
             <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{response.content}</p>
           </div>

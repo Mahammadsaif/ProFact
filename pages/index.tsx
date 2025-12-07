@@ -19,28 +19,12 @@ export default function Home() {
               ProFact
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Get concise, factual information on any topic powered by Google Gemini AI
+              Get concise, factual information on any topic
             </p>
-            <div className="mt-4 flex items-center justify-center gap-2">
-              <span className="inline-block px-3 py-1 text-xs font-medium bg-purple-100 text-purple-800 rounded-full">
-                Powered by Gemini
-              </span>
-            </div>
           </div>
 
           {/* Main Form */}
           <ProFactForm />
-
-          {/* Footer */}
-          <footer className="mt-16 text-center text-sm text-gray-500">
-            <p>
-              Powered by{' '}
-              <span className="font-medium text-purple-700">
-                Google Gemini
-              </span>
-            </p>
-            <p className="mt-2">Built with Next.js, TypeScript, and Tailwind CSS</p>
-          </footer>
         </div>
       </main>
     </>
