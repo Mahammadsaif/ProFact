@@ -16,7 +16,7 @@ export class GeminiProvider implements LLMProvider {
 
   async generateResponse(topic: string): Promise<LLMResponse> {
     try {
-      const model = this.client.getGenerativeModel({ model: 'gemini-pro' });
+      const model = this.client.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
       const prompt = `Provide a brief, informative response about: ${topic}`;
       const result = await model.generateContent(prompt);
