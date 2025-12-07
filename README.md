@@ -1,12 +1,12 @@
 # ProFact
 
-A minimal Next.js + TypeScript project with provider-agnostic LLM integration. Get concise, factual information on any topic using OpenAI or Google Gemini.
+A minimal Next.js + TypeScript project with Google Gemini AI integration. Get concise, factual information on any topic using AI.
 
 ## Features
 
 - ✨ **Next.js with Pages Router** - Traditional routing with API routes
 - 🎨 **Tailwind CSS** - Beautiful, responsive UI design
-- 🤖 **Provider-Agnostic LLM** - Switch between OpenAI and Gemini via environment variable
+- 🤖 **Google Gemini AI** - Powered by gemini-pro model
 - 🧪 **Jest Testing** - Comprehensive unit tests for API routes
 - 📝 **TypeScript** - Full type safety
 - 🎯 **ESLint & Prettier** - Code quality and formatting
@@ -27,7 +27,6 @@ profact/
 │   └── llm/
 │       ├── index.ts            # LLM provider factory
 │       ├── types.ts            # Shared types
-│       ├── openai.ts           # OpenAI integration
 │       └── gemini.ts           # Gemini integration
 ├── __tests__/
 │   └── api/
@@ -45,7 +44,7 @@ profact/
 ### Prerequisites
 
 - Node.js 18+ and npm
-- OpenAI API key OR Google Gemini API key
+- Google Gemini API key
 
 ### Installation
 
@@ -69,22 +68,15 @@ Create a `.env.local` file in the root directory:
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and add your API keys:
+Edit `.env.local` and add your Gemini API key:
 
 ```env
-# Choose your LLM provider: OPENAI or GEMINI
-LLM_PROVIDER=OPENAI
-
-# OpenAI Configuration (required if using OpenAI)
-OPENAI_API_KEY=sk-your-openai-api-key-here
-
-# Google Gemini Configuration (required if using Gemini)
+# Google Gemini Configuration
 GEMINI_API_KEY=your-gemini-api-key-here
 ```
 
-**Getting API Keys:**
+**Getting API Key:**
 
-- **OpenAI**: Get your API key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 - **Gemini**: Get your API key from [makersuite.google.com/app/apikey](https://makersuite.google.com/app/apikey)
 
 ### Running Locally
@@ -105,20 +97,6 @@ http://localhost:3000
    - Enter a topic (e.g., "Quantum Computing", "Climate Change")
    - Click "Get ProFact"
    - View the AI-generated response
-
-### Switching LLM Providers
-
-To switch between OpenAI and Gemini, simply change the `LLM_PROVIDER` in your `.env.local`:
-
-```env
-# Use OpenAI
-LLM_PROVIDER=OPENAI
-
-# OR use Gemini
-LLM_PROVIDER=GEMINI
-```
-
-Restart the dev server after changing the provider.
 
 ## Testing with Postman
 
@@ -147,7 +125,7 @@ Content-Type: application/json
 ```json
 {
   "content": "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines...",
-  "provider": "OpenAI",
+  "provider": "Gemini",
   "topic": "Artificial Intelligence"
 }
 ```
@@ -242,11 +220,9 @@ Or simply push to GitHub and import the repository in the [Vercel Dashboard](htt
 2. Navigate to **Settings** → **Environment Variables**
 3. Add the following variables:
 
-| Name             | Value                | Environment                      |
-| ---------------- | -------------------- | -------------------------------- |
-| `LLM_PROVIDER`   | `OPENAI` or `GEMINI` | Production, Preview, Development |
-| `OPENAI_API_KEY` | Your OpenAI API key  | Production, Preview, Development |
-| `GEMINI_API_KEY` | Your Gemini API key  | Production, Preview, Development |
+| Name             | Value               | Environment                      |
+| ---------------- | ------------------- | -------------------------------- |
+| `GEMINI_API_KEY` | Your Gemini API key | Production, Preview, Development |
 
 4. Click **Save**
 5. Redeploy your application
@@ -254,8 +230,6 @@ Or simply push to GitHub and import the repository in the [Vercel Dashboard](htt
 #### Via Vercel CLI:
 
 ```bash
-vercel env add LLM_PROVIDER
-vercel env add OPENAI_API_KEY
 vercel env add GEMINI_API_KEY
 ```
 
@@ -268,22 +242,16 @@ vercel env add GEMINI_API_KEY
 
 ## Environment Variables Reference
 
-| Variable         | Required      | Description           | Example              |
-| ---------------- | ------------- | --------------------- | -------------------- |
-| `LLM_PROVIDER`   | Yes           | LLM provider to use   | `OPENAI` or `GEMINI` |
-| `OPENAI_API_KEY` | Conditional\* | OpenAI API key        | `sk-...`             |
-| `GEMINI_API_KEY` | Conditional\* | Google Gemini API key | `AIza...`            |
-
-\*Required based on the selected `LLM_PROVIDER`
+| Variable         | Required | Description           | Example   |
+| ---------------- | -------- | --------------------- | --------- |
+| `GEMINI_API_KEY` | Yes      | Google Gemini API key | `AIza...` |
 
 ## Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (Pages Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **LLM Providers**:
-  - [OpenAI](https://openai.com/) (GPT-3.5-turbo)
-  - [Google Gemini](https://ai.google.dev/) (gemini-pro)
+- **LLM Provider**: [Google Gemini](https://ai.google.dev/) (gemini-pro)
 - **Testing**: [Jest](https://jestjs.io/) + [Testing Library](https://testing-library.com/)
 - **Code Quality**: [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
 
@@ -306,7 +274,7 @@ vercel env add GEMINI_API_KEY
 ```typescript
 {
   content: string; // LLM-generated response
-  provider: string; // "OpenAI" or "Gemini"
+  provider: string; // "Gemini"
   topic: string; // Original topic (trimmed)
 }
 ```
@@ -323,7 +291,7 @@ vercel env add GEMINI_API_KEY
 
 ### "API key is not set" Error
 
-Make sure you've created a `.env.local` file with the correct API key for your chosen provider.
+Make sure you've created a `.env.local` file with your Gemini API key.
 
 ### "Method not allowed" Error
 
