@@ -57,7 +57,7 @@ export default async function handler(
 
     // Handle specific error types
     if (error instanceof Error) {
-      if (error.message.includes('API key')) {
+      if (error.message.toLowerCase().includes('api key') || error.message.includes('API_KEY')) {
         return res.status(500).json({ error: 'Server configuration error. Please check API keys.' });
       }
       return res.status(500).json({ error: `Server error: ${error.message}` });

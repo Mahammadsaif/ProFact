@@ -130,7 +130,7 @@ describe('/api/profact', () => {
 
   it('should handle provider initialization errors', async () => {
     (getLLMProvider as jest.Mock).mockImplementation(() => {
-      throw new Error('OPENAI_API_KEY environment variable is not set');
+      throw new Error('GEMINI_API_KEY environment variable is not set');
     });
 
     const { req, res } = createMocks({
@@ -141,9 +141,9 @@ describe('/api/profact', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(500);
-    expect(JSON.parse(res._getData())).toEqual({
-      error: 'Server configuration error. Please check API keys.',
-    });
+    const responseData = JSON.parse(res._getData());
+    // The error message should contain "API key" and trigger the configuration error
+    expect(responseData.error).toBe('Server configuration error. Please check API keys.');
   });
 
   it('should trim whitespace from topic', async () => {
